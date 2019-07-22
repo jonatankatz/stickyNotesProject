@@ -1,0 +1,30 @@
+html,body  {height:100%}
+body {
+    background-image: url(images/cork2.jpg);
+    background-size: cover;
+}
+
+.main-title{
+    font-family: 'Hanalei', cursive;
+    font-size: 6rem;
+    color: black;
+    letter-spacing: 1rem;
+
+}
+.my-form {background-image: url(images/formbg.jpg);
+    background-size: contain;
+    height: 30%;
+    width:60%;
+    margin: auto;
+
+}
+.date-input{
+    border: none;
+    background: transparent;
+}
+.text-input{
+    width: 100%;
+    height: 80%;
+    border: none;
+    background: transparent;
+}
