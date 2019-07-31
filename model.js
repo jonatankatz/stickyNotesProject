@@ -1,3 +1,4 @@
+// Function constructor  sticky note
 function stickyNote(id,name,text,date,time,completed) {
     this.note_id = id,
    this.note_name = name;
@@ -7,6 +8,7 @@ function stickyNote(id,name,text,date,time,completed) {
    this.completed = completed;
 
 }
+// sticky note Ui
 function getNoteUi(stickyNote) {
     const {note_id,note_name,note_text,note_date,note_time,completed} = stickyNote
     
@@ -79,6 +81,8 @@ function getNoteUi(stickyNote) {
     return note_mainDiv;
     
     }
+
+    // sticky note Ui functions
     function invisibleBtn() {
         let buttonsDiv = this.querySelector("#buttonsDiv")
         buttonsDiv.classList.add("invisible")
@@ -89,64 +93,6 @@ function getNoteUi(stickyNote) {
     buttonsDiv.classList.add("visible")
     buttonsDiv.classList.remove("invisible")
 
-    }
-    function validateTime(note_time,note_date) {
-        Date.prototype.toDateInputValue = (function() {
-            let local = new Date(this);
-            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-            return local.toJSON().slice(11,16);
-        
-        });
-        let timeNow =  new Date().toDateInputValue();
-        timeNow = timeNow.replace(":",'')
-        timeNow = Number(timeNow)
-    
-        let Itime = note_time
-        Itime = Itime.replace(":",'')
-        Itime = Number(Itime)
-
-        Date.prototype.toDateInputValue = (function() {
-            let local = new Date(this);
-            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-            return local.toJSON().slice(0,10);
-        
-        
-        });
-
-        let dateNow = new Date().toDateInputValue();
-        dateNow = dateNow.replace("-" , '')
-        dateNow = dateNow.replace("-",'')
-        dateNow = Number(dateNow)
-
-        let Idate = note_date
-        Idate = Idate.replace("-",'')
-        Idate = Idate.replace("-",'')
-        Idate = Number(Idate)
-      
-         if(Idate === dateNow && Itime < timeNow){return false;}
-        
-        
-    }
-    function validateDate(note_date)  {
-        Date.prototype.toDateInputValue = (function() {
-            let local = new Date(this);
-            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-            return local.toJSON().slice(0,10);
-        
-        
-        });
-
-        let dateNow = new Date().toDateInputValue();
-        dateNow = dateNow.replace("-" , '')
-        dateNow = dateNow.replace("-",'')
-        dateNow = Number(dateNow)
-
-        let Idate = note_date
-        Idate = Idate.replace("-",'')
-        Idate = Idate.replace("-",'')
-        Idate = Number(Idate)
-      
-         if(Idate < dateNow){ return false;}
     }
 
 

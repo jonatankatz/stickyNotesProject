@@ -13,6 +13,7 @@ NOTES_DOM.add_button.addEventListener("click",saveStickyNOTE)
 
 let arrayOfNotes ;
 
+// drawing functions
 function draw(arr){
     clearBoard();
     for (let index = 0; index < arr.length; index++) {
@@ -51,7 +52,7 @@ function  drawNote(stickyNote){
     
 }
 
-
+// main function save sticky note
 function saveStickyNOTE() {
     
     const {
@@ -63,11 +64,20 @@ function saveStickyNOTE() {
 
   
  
-
+// validate that all inputs are filled
     if (!note_name.value || !note_text.value || !note_date.value || !note_time.value)  
     {alert("Please Fill All Inputs") 
     return;}
+    console.log(note_date.value)
 
+// regex validate that date and time is valid
+    const dateValidationResult = DateRegexValidate(note_date.value)
+    const timeValidationResult = timeRegexValidate(note_time.value)
+    if(!dateValidationResult){alert("Date is not valid") 
+    return;}  
+    if(!timeValidationResult){alert("Time is not valid") 
+    return;}  
+// validate that the due date and time is greatens than now
   if( validateDate(note_date.value) === false || validateTime(note_time.value,note_date.value) === false ){
       alert("Please enter date & time greatens than now") 
       return;}
@@ -78,6 +88,9 @@ let dateYear = note_date.value.slice(0, 4);
 let dateMonth = note_date.value.slice(5, 7);
 let dateDay = note_date.value.slice(8, 10);
 let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
+
+
+
 
     arrayOfNotes.push (new stickyNote(    
         note_id,
@@ -94,7 +107,74 @@ let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
     NOTES_DOM.notes_board.reset();
 
     }
+    // validation functions
+    function DateRegexValidate(date) {
+        let dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
+        return dateRegex.test(date)
+    }
+    function timeRegexValidate(time) {
+        let timeRegex = /^(\d{1,2}):(\d{2})(?::(\d{2}))?$/
+        return timeRegex.test(time)
+    }
+    function validateTime(note_time,note_date) {
+        Date.prototype.toDateInputValue = (function() {
+            let local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(11,16);
+        
+        });
+        let timeNow =  new Date().toDateInputValue();
+        timeNow = timeNow.replace(":",'')
+        timeNow = Number(timeNow)
     
+        let Itime = note_time
+        Itime = Itime.replace(":",'')
+        Itime = Number(Itime)
+
+        Date.prototype.toDateInputValue = (function() {
+            let local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        
+        
+        });
+
+        let dateNow = new Date().toDateInputValue();
+        dateNow = dateNow.replace("-" , '')
+        dateNow = dateNow.replace("-",'')
+        dateNow = Number(dateNow)
+
+        let Idate = note_date
+        Idate = Idate.replace("-",'')
+        Idate = Idate.replace("-",'')
+        Idate = Number(Idate)
+      
+         if(Idate === dateNow && Itime < timeNow){return false;}
+        
+        
+    }
+    function validateDate(note_date)  {
+        Date.prototype.toDateInputValue = (function() {
+            let local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        
+        
+        });
+
+        let dateNow = new Date().toDateInputValue();
+        dateNow = dateNow.replace("-" , '')
+        dateNow = dateNow.replace("-",'')
+        dateNow = Number(dateNow)
+
+        let Idate = note_date
+        Idate = Idate.replace("-",'')
+        Idate = Idate.replace("-",'')
+        Idate = Number(Idate)
+      
+         if(Idate < dateNow){ return false;}
+    }
+   // local storage functions 
 
     function saveToLocalStorage(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
