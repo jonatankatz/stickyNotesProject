@@ -11,10 +11,18 @@ function stickyNote(id,name,text,date,time,completed) {
 // sticky note Ui
 function getNoteUi(stickyNote) {
     const {note_id,note_name,note_text,note_date,note_time,completed} = stickyNote
-    
+
+// completed boolean statement
+  let mainDivComplete = "sticky-note-container"
+  let completeIcon = "fas fa-check-square"
+    if (completed === true){
+        mainDivComplete = "completed"
+        completeIcon = "fas fa-trash-restore"
+
+    }
 
     const note_mainDiv = document.createElement("div")
-    note_mainDiv.classList.add(completed)
+    note_mainDiv.classList.add(mainDivComplete)
     note_mainDiv.id = note_id
     note_mainDiv.addEventListener("mouseover",visibleBtn)
     note_mainDiv.addEventListener("mouseout",invisibleBtn)
@@ -34,7 +42,7 @@ function getNoteUi(stickyNote) {
     complete_button.addEventListener("click",completeHandler)
     
     const complete_icon = document.createElement("i");
-    complete_icon.className ="fas fa-check-square";
+    complete_icon.className = completeIcon;
     
     const delete_button = document.createElement("button");
     delete_button.id = "deleteBtn";
@@ -95,7 +103,7 @@ function getNoteUi(stickyNote) {
 
     }
 
-
+// buttons functions
 function completeHandler() {
     let thisId = this.parentElement.parentElement.parentElement.id
         completeNote(thisId)
@@ -104,7 +112,10 @@ function completeHandler() {
     function completeNote(id){
         const index = findIndex(arrayOfNotes,id);
         if (id === undefined) return;
-        arrayOfNotes[index].completed = "completed"
+        if(arrayOfNotes[index].completed === false){
+            arrayOfNotes[index].completed = true;
+        }
+        else{arrayOfNotes[index].completed = false;}
         saveToLocalStorage("stickyNotes",arrayOfNotes);
         draw(arrayOfNotes);
     }

@@ -12,7 +12,6 @@ const NOTES_DOM = {
 NOTES_DOM.add_button.addEventListener("click",saveStickyNOTE)
 
 let arrayOfNotes ;
-
 // drawing functions
 function draw(arr){
     clearBoard();
@@ -83,7 +82,7 @@ function saveStickyNOTE() {
       return;}
 
 let note_id = Date.now();
-let completed = "sticky-note-container"
+let completed = false;
 let dateYear = note_date.value.slice(0, 4);
 let dateMonth = note_date.value.slice(5, 7);
 let dateDay = note_date.value.slice(8, 10);
