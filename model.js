@@ -5,6 +5,7 @@ function stickyNote(id,name,text,date,time,completed) {
    this.note_date = date;
    this.note_time  = time;
    this.completed = completed;
+
 }
 function getNoteUi(stickyNote) {
     const {note_id,note_name,note_text,note_date,note_time,completed} = stickyNote

@@ -40,9 +40,15 @@ function findIndex(arr,id) {
 function  drawNote(stickyNote){
    const { notes_board } = NOTES_DOM;
    const currentNote = getNoteUi(stickyNote)
-   if (!currentNote) return;
-   notes_board.append(currentNote);
+   let currentid = currentNote.id.slice(0,10)
+    let currenTime = Date.now().toString().slice(0,10)
+    if (!currentNote) return;
 
+   if (currentid === currenTime){
+    $(currentNote).hide().appendTo(notes_board).fadeIn(1000);
+   }
+   notes_board.append(currentNote);
+    
 }
 
 
@@ -55,6 +61,9 @@ function saveStickyNOTE() {
         note_time
     } = NOTES_DOM;
 
+  
+ 
+
     if (!note_name.value || !note_text.value || !note_date.value || !note_time.value)  
     {alert("Please Fill All Inputs") 
     return;}
@@ -65,14 +74,19 @@ function saveStickyNOTE() {
 
 let note_id = Date.now();
 let completed = "sticky-note-container"
+let dateYear = note_date.value.slice(0, 4);
+let dateMonth = note_date.value.slice(5, 7);
+let dateDay = note_date.value.slice(8, 10);
+let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
 
     arrayOfNotes.push (new stickyNote(    
         note_id,
         note_name.value,
         note_text.value,
-        note_date.value,
+        note_dateInput,
         note_time.value,
-        completed
+        completed,
+     
     ));
    
     saveToLocalStorage("stickyNotes",arrayOfNotes);
