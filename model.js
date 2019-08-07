@@ -1,16 +1,17 @@
 // Function constructor  sticky note
-function stickyNote(id,name,text,date,time,completed) {
+function stickyNote(id,name,text,date,time,weekDay,completed) {
     this.note_id = id,
    this.note_name = name;
    this.note_text = text;
    this.note_date = date;
    this.note_time  = time;
+   this.weekDay = weekDay;
    this.completed = completed;
 
 }
 // sticky note Ui
 function getNoteUi(stickyNote) {
-    const {note_id,note_name,note_text,note_date,note_time,completed} = stickyNote
+    const {note_id,note_name,note_text,note_date,note_time,weekDay,completed} = stickyNote
 
 // completed boolean statement
   let mainDivComplete = "sticky-note-container"
@@ -22,7 +23,7 @@ function getNoteUi(stickyNote) {
     }
 
     const note_mainDiv = document.createElement("div")
-    note_mainDiv.classList.add(mainDivComplete)
+    note_mainDiv.classList.add(mainDivComplete , "mr-4")
     note_mainDiv.id = note_id
     note_mainDiv.addEventListener("mouseover",visibleBtn)
     note_mainDiv.addEventListener("mouseout",invisibleBtn)

@@ -8,10 +8,18 @@ const NOTES_DOM = {
     reset_button:document.querySelector("#resetFormButton")
 }
 
-
 NOTES_DOM.add_button.addEventListener("click",saveStickyNOTE)
 
-let arrayOfNotes ;
+let arrayOfNotes = [];
+
+function getSelectedValue() {
+let sortByVal = document.querySelector("#sortBy").value
+sortBy(sortByVal , arrayOfNotes)
+}
+
+
+
+
 // drawing functions
 function draw(arr){
     clearBoard();
@@ -62,21 +70,25 @@ function saveStickyNOTE() {
     } = NOTES_DOM;
 
   
- 
+    
+
 // validate that all inputs are filled
     if (!note_name.value || !note_text.value || !note_date.value || !note_time.value)  
     {alert("Please Fill All Inputs") 
     return;}
-    console.log(note_date.value)
+    
 
 // regex validate that date and time is valid
+
     const dateValidationResult = DateRegexValidate(note_date.value)
     const timeValidationResult = timeRegexValidate(note_time.value)
     if(!dateValidationResult){alert("Date is not valid") 
     return;}  
     if(!timeValidationResult){alert("Time is not valid") 
     return;}  
+
 // validate that the due date and time is greatens than now
+
   if( validateDate(note_date.value) === false || validateTime(note_time.value,note_date.value) === false ){
       alert("Please enter date & time greatens than now") 
       return;}
@@ -87,9 +99,7 @@ let dateYear = note_date.value.slice(0, 4);
 let dateMonth = note_date.value.slice(5, 7);
 let dateDay = note_date.value.slice(8, 10);
 let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
-
-
-
+let Weekday = false
 
     arrayOfNotes.push (new stickyNote(    
         note_id,
@@ -97,15 +107,17 @@ let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
         note_text.value,
         note_dateInput,
         note_time.value,
+        Weekday,
         completed,
-     
+        
     ));
-   
+
     saveToLocalStorage("stickyNotes",arrayOfNotes);
     draw(arrayOfNotes)
     NOTES_DOM.notes_board.reset();
 
     }
+
     // validation functions
     function DateRegexValidate(date) {
         let dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
@@ -185,9 +197,69 @@ let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
       }
       init();
 
+function sortBy(value,arr) {
+    switch(value){
+        case ("All"):
+            draw(arr);
+            break;
+        case ("Today"):
+            sortToday(arr) 
+            break;
+        case ("Completed"):
+            sortCompleted(arr)
+            break;
+            
+            }
+    }
+
+function sortToday(arr) {
+    Date.prototype.toDateInputValue = (function() {
+        let local = new Date(this);
+     
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+    });   
+    clearBoard()
+    for (let index = 0; index < arr.length; index++) {
+        let dateNow = new Date().toDateInputValue();
+let dateYear = dateNow.slice(0, 4);
+let dateMonth = dateNow.slice(5, 7);
+let dateDay = dateNow.slice(8, 10);
+dateNow = (dateDay + dateMonth + dateYear)
+        dateNow = Number(dateNow)
+    console.log(dateNow)
+       let currentNote = arr[index]
+        let Idate = currentNote.note_date
+    Idate = Idate.replace("-",'')
+    Idate = Idate.replace("-",'')
+    Idate = Number(Idate)
+    console.log(Idate)
+     if(Idate === dateNow ){
+         
+        drawNote(arr[index])
+     }
+     else{clearBoard()}}
+     
+}
+
+function sortCompleted(arr) {
+    clearBoard()
+    for (let index = 0; index < arr.length; index++) {
+        let currentNote = arr[index]
+        let completed = currentNote.completed
+        console.log(completed)
+        if( completed === true) {
+            
+            console.log(arr[index])
+            drawNote(arr[index])
+            
+        }
+    }
+}
 //DATE NOW GENERATOR
 Date.prototype.toDateInputValue = (function() {
     let local = new Date(this);
+ 
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
     return local.toJSON().slice(0,10);
 
@@ -201,3 +273,20 @@ Date.prototype.toDateInputValue = (function() {
 
 });
 document.getElementById("timeToDo").value = new Date().toDateInputValue();
+
+//Week Day generator 
+
+//function Weekday() {
+//    var d = new Date();
+//var weekday = new Array(7);
+//weekday[0] =  "Sunday";
+//weekday[1] = "Monday";
+//weekday[2] = "Tuesday";
+//weekday[3] = "Wednesday";
+//weekday[4] = "Thursday";
+//weekday[5] = "Friday";
+//weekday[6] = "Saturday";
+//
+//var n = weekday[d.getDay()];
+//return n;
+//}

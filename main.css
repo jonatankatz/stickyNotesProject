@@ -3,20 +3,34 @@ body {
     background-image: url(images/cork2.jpg);
     background-size: cover;
 }
-
+.titleBg {
+  background-image: url('images/titlebackground.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+  vertical-align: middle;
+}
 .main-title{
     font-family: 'Hanalei', cursive;
-    font-size: 3rem;
+    font-size: 2vw;
     color: black;
-    letter-spacing: 1rem;
-    position: absolute;
+    width: 90%;;
+    letter-spacing: 0.3em;
+    position: relative;
+top: 40%;
+transform: translateY(-50%);
 
+     
 }
-.my-form {background-image: url(images/stock.png);
+.my-form {background-image: url(images/stock.svg);
     background-size: cover;
     font-size: 70%;
     height: 100%;
+  width: 100%;
   
+}
+.form-position {
+  height:100%;  
 }
 .date-input{
     border: none;
@@ -68,27 +82,16 @@ body {
     border-bottom: dashed 1px grey;
     text-align: center;
 }
-.contain{
-    position: relative;
-    text-align: center;
-    color: white;
-  }
 
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-.form-position {
-    position: relative; left: 6% ; top:5%; height:250px;  width: 250px;
-}
+
+
+
 .board-position {
     position: relative;
-    left: 35%;
+    left: 30%;
     top: -30%;
     height: 160%;
-    width: 65%;
+    width: 70%;
 }
 .secDivNote {
     height: 100%; 
@@ -160,3 +163,21 @@ body {
   .invisible {
       visibility: hidden;
     }
+  .sortByDiv{
+    font-size: 1.2vw;
+    position: relative;
+    top: 6%;
+    width: 100%;
+    height: 12%;
+  }
+  .sortBy{
+    position: relative;
+    left: -8%;
+    font-size:0.8vw;
+    width: 14%;
+ border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+  }
+  
