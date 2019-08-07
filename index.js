@@ -202,6 +202,9 @@ function sortBy(value,arr) {
         case ("All"):
             draw(arr);
             break;
+        case ("ToDo"):
+            sortToDo(arr)
+            break;
         case ("Today"):
             sortToday(arr) 
             break;
@@ -249,6 +252,21 @@ function sortCompleted(arr) {
         let completed = currentNote.completed
         console.log(completed)
         if( completed === true) {
+            
+            console.log(arr[index])
+            drawNote(arr[index])
+            
+        }
+    }
+}
+
+function sortToDo(arr) {
+    clearBoard()
+    for (let index = 0; index < arr.length; index++) {
+        let currentNote = arr[index]
+        let completed = currentNote.completed
+        console.log(completed)
+        if( completed === false) {
             
             console.log(arr[index])
             drawNote(arr[index])
