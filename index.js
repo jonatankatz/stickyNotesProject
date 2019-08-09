@@ -22,6 +22,7 @@ sortBy(sortByVal , arrayOfNotes)
 
 // drawing functions
 function draw(arr){
+    console.log(arr)
     clearBoard();
     for (let index = 0; index < arr.length; index++) {
       drawNote(arr[index]);
@@ -54,6 +55,7 @@ function  drawNote(stickyNote){
 
    if (currentid === currenTime){
     $(currentNote).hide().appendTo(notes_board).fadeIn(1000);
+    
    }
    notes_board.append(currentNote);
     
@@ -91,7 +93,7 @@ function saveStickyNOTE() {
 
   if( validateDate(note_date.value) === false || validateTime(note_time.value,note_date.value) === false ){
       alert("Please enter date & time greatens than now") 
-      return;}
+    return;}
 
 let note_id = Date.now();
 let completed = false;
@@ -99,7 +101,6 @@ let dateYear = note_date.value.slice(0, 4);
 let dateMonth = note_date.value.slice(5, 7);
 let dateDay = note_date.value.slice(8, 10);
 let note_dateInput = (dateDay + "-" + dateMonth + "-" + dateYear)
-let Weekday = false
 
     arrayOfNotes.push (new stickyNote(    
         note_id,
@@ -107,9 +108,7 @@ let Weekday = false
         note_text.value,
         note_dateInput,
         note_time.value,
-        Weekday,
         completed,
-        
     ));
 
     saveToLocalStorage("stickyNotes",arrayOfNotes);
@@ -212,8 +211,8 @@ function sortBy(value,arr) {
             sortCompleted(arr)
             break;
             
-            }
     }
+}
 
 function sortToday(arr) {
     Date.prototype.toDateInputValue = (function() {
@@ -291,20 +290,3 @@ Date.prototype.toDateInputValue = (function() {
 
 });
 document.getElementById("timeToDo").value = new Date().toDateInputValue();
-
-//Week Day generator 
-
-//function Weekday() {
-//    var d = new Date();
-//var weekday = new Array(7);
-//weekday[0] =  "Sunday";
-//weekday[1] = "Monday";
-//weekday[2] = "Tuesday";
-//weekday[3] = "Wednesday";
-//weekday[4] = "Thursday";
-//weekday[5] = "Friday";
-//weekday[6] = "Saturday";
-//
-//var n = weekday[d.getDay()];
-//return n;
-//}
