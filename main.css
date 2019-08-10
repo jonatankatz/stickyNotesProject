@@ -1,0 +1,209 @@
+html,
+body {
+    height: 100%
+}
+
+body {
+    background-image: url(images/cork2.jpg);
+    background-size: cover;
+}
+
+.titleBg {
+    background-image: url('images/titlebackground.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main-title {
+    font-family: 'Hanalei', cursive;
+    font-size: 2vw;
+    color: black;
+    width: 90%;
+    ;
+    letter-spacing: 0.3em;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.my-form {
+    background-image: url(images/stock.svg);
+    background-size: cover;
+    font-size: 70%;
+    height: 100%;
+    width: 100%;
+}
+
+.form-position {
+    height: 100%;
+}
+
+.date-input {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.text-input-container {
+    position: relative;
+    left: 5%;
+    top: -5%;
+    width: 90%;
+    border-bottom: dashed 1px grey;
+}
+
+.text-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+}
+
+.text-note-container {
+    position: relative;
+    left: 6%;
+    top: -3%;
+    width: 90%;
+    height: 110px;
+    overflow-wrap: break-word;
+    overflow: scroll;
+}
+
+.name-input-container {
+    position: relative;
+    left: 5%;
+    top: -7%;
+    width: 87%;
+    border-bottom: dashed 1px grey;
+}
+
+.name-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+}
+
+.name-note-container {
+    position: relative;
+    left: 6%;
+    top: -5%;
+    width: 87%;
+    border-bottom: dashed 1px grey;
+    text-align: center;
+}
+
+.board-position {
+    position: relative;
+    left: 30%;
+    top: -30%;
+    height: 160%;
+    width: 70%;
+}
+
+.secDivNote {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.sticky-note-container {
+    height: 250px;
+    width: 250px;
+    background-image: url(images/sticky_note.png);
+    background-size: cover;
+    font-size: 84%;
+    position: relative;
+}
+
+.buttons {
+    position: relative;
+    left: 3.3%;
+    top: 3.15%;
+    width: 91.3%;
+    background: rgb(193, 148, 13);
+}
+
+.note-buttons {
+    position: relative;
+    left: 3.2%;
+    top: 9%;
+    width: 93%;
+}
+
+.my-button {
+    border: none;
+    background: none;
+}
+
+.due-date {
+    position: relative;
+    left: 5%;
+    top: 66%;
+}
+
+.due-time {
+    position: relative;
+    left: 5%;
+    top: 67%;
+}
+
+.due-date-note {
+    position: relative;
+    left: 5%;
+    top: 67%;
+}
+
+.due-time-note {
+    position: relative;
+    left: 5%;
+    top: 68%;
+}
+
+div#note {
+    -ms-transform: rotate(357deg);
+    /* IE 9 */
+    -webkit-transform: rotate(357deg);
+    /* Safari prior 9.0 */
+    transform: rotate(357deg);
+    /* Standard syntax */
+}
+
+.completed {
+    opacity: 0.6;
+    height: 250px;
+    width: 250px;
+    background-image: url(images/sticky_note.png);
+    background-size: cover;
+    font-size: 84%;
+    position: relative;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.sortByDiv {
+    font-size: 1.2vw;
+    position: relative;
+    top: 6%;
+    width: 100%;
+    height: 12%;
+}
+
+.sortBy {
+    position: relative;
+    left: -9%;
+    font-size: 0.8vw;
+    width: 18%;
+    border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+}

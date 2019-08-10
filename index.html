@@ -5,13 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Hanalei&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Sticky notes</title>
 </head>
 
 <body>
+    <div class="container pt-3" style="height: 30%; width: 100%">
+        <div class="d-flex justify-content-center " style="height: 100%; width: 100%;">
+            <div class="titleBg" style="max-width:50%; ">
+                <div class="sortByDiv">
+                    <select class="sortBy" id="sortBy" onchange="getSelectedValue();">
+                        <option value="All">All</option>
+                        <option value="ToDo">To do</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Today">Today</option>
+                    </select>
+                </div>
+                <div class=" main-title ">My Tasks Board</div>
 
-    <script src="index.js">
-    </script>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-5" style="height: 70%">
+        <div class="row" style="height:  58%">
+            <div class="form-position ml-4 col-lg-3 no-gutters " style=" height: 100%;">
+                <div class="my-form " style="width: 100%; max-width: 250px; height: 100%; max-height: 250px; ">
+                    <form id="stickyNotesForm" style="height: 100%; margin: 0px;">
+                        <div class="buttons">
+                            <button style="outline: none" class="my-button ml-1" id="addNoteButton"> <i class="fas fa-plus"></i> </button>
+                            <button style="outline: none" class="my-button float-right mr-1" id="resetFormButton"> <i class="fas fa-undo-alt "></i></button>
+                        </div>
+                        <div class="due-date">
+                            <span> Date : </span><input type="date" id="dateToDo" class="date-input">
+                        </div>
+                        <div class="due-time">
+                            <span> Time : </span> <input type="time" id="timeToDo" class="date-input">
+                        </div>
+                        <div class="name-input-container">
+                            <span>Task Name :</span>
+                            <textarea class="name-input" id="noteName" cols="30" rows="1"></textarea>
+                        </div>
+                        <div class="text-input-container">
+                            <textarea class="text-input" id="noteText" cols="30" rows="5"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="container col-8" style="size: 100%; ">
+                <div id="tasksBoard" class="row" style="width:100%;">
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="model.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://kit.fontawesome.com/0ef0c3572c.js"></script>
+
+
 </body>
 
 </html>
