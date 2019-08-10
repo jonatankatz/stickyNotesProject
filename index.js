@@ -91,7 +91,8 @@ function saveStickyNOTE() {
 
 // validate that the due date and time is greatens than now
 
-  if( validateDate(note_date.value) === false || validateTime(note_time.value,note_date.value) === false ){
+  if( validateDate(note_date.value) === false  || validateTime(note_time.value,note_date.value) === false) {
+      console.log()
       alert("Please enter date & time greatens than now") 
     return;}
 
@@ -250,7 +251,7 @@ function sortCompleted(arr) {
         let currentNote = arr[index]
         let completed = currentNote.completed
         console.log(completed)
-        if( completed === true) {
+        if(completed) {
             
             console.log(arr[index])
             drawNote(arr[index])
@@ -265,7 +266,7 @@ function sortToDo(arr) {
         let currentNote = arr[index]
         let completed = currentNote.completed
         console.log(completed)
-        if( completed === false) {
+        if(!completed) {
             
             console.log(arr[index])
             drawNote(arr[index])
